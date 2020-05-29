@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class NotesList extends React.Component {
+class NotesList extends Component {
+  state = {
+    checkNote: false,
+  };
+
+  handleCheckboxChange = (e) => {
+    console.log("checked box ");
+    this.setState({
+      checkNote: e.target.checked,
+    });
+  };
+
   render() {
     return (
       <div className="note-list">
@@ -12,13 +23,19 @@ class NotesList extends React.Component {
               <li key={index}>
                 {" "}
                 <label></label>
-                <input type="checkbox" id={index} name="" value={item}></input>
+                <input
+                  type="checkbox"
+                  id={index}
+                  name=""
+                  value={item}
+                  checked={this.state.checkNote}
+                  onChange={this.handleCheckboxChange}
+                ></input>
                 {item}
               </li>
             );
           })}
         </ul>
-        <button className="button-delete"> delete</button>
       </div>
     );
   }
