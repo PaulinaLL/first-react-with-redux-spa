@@ -9,6 +9,11 @@ function appReducer(state = initialState, action) {
         ...state,
         notes: [...state.notes, action.payload.note],
       };
+    case "delete_note":
+      return {
+        ...state,
+        notes: [state.notes.filter((item) => item.id !== action.id)],
+      };
 
     default:
       return state;
